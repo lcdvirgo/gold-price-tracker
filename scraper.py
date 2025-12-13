@@ -1,12 +1,14 @@
 import requests
 from datetime import datetime
+import pytz
 import csv
 import os
 import json
 
 def scrape_gold_price():
     """Fetch current gold price from a reliable API"""
-    timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    sg_tz = pytz.timezone('Asia/Singapore')
+    timestamp = datetime.now(sg_tz).strftime('%Y-%m-%d %H:%M:%S %Z')
     
     # Try multiple sources for gold price
     
