@@ -30,10 +30,10 @@ jobs:
           python scraper.py
       
       - name: Commit and push changes
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: 'Update gold price data'
-          file_pattern: 'data/*.csv'
-          commit_options: '--no-verify'
-          skip_fetch: false
-          skip_checkout: false
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git pull --rebase origin main
+          git add data/*.csv
+          git diff --quiet && git diff --staged --quiet || git commit -m "Update gold price data"
+          git push origin main
