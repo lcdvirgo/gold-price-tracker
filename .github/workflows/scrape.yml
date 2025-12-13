@@ -1,0 +1,36 @@
+name: Scrape Gold Price
+
+on:
+  schedule:
+    # Runs every hour
+    - cron: '0 * * * *'
+  
+  # Allows manual triggering from Actions tab
+  workflow_dispatch:
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      
+      - name: Install dependencies
+        run: |
+          pip install requests beautifulsoup4
+      
+      - name: Run scraper
+        run: |
+          python scraper.py
+      
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: 'Update gold price data'
+          file_pattern: 'data/*.csv'
