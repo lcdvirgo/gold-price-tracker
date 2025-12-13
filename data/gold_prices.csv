@@ -1,2 +1,3 @@
 timestamp,price,change,percent_change,url,status
 2025-12-13 08:02:15,N/A,N/A,N/A,https://goldprice.org,parsing_failed
+2025-12-13 08:13:15,"4,300.40",18.5975,0.4343,https://goldprice.org,success
