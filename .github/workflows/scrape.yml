@@ -30,7 +30,10 @@ jobs:
           python scraper.py
       
       - name: Commit and push changes
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: 'Update gold price data'
           file_pattern: 'data/*.csv'
+          commit_options: '--no-verify'
+          skip_fetch: false
+          skip_checkout: false
